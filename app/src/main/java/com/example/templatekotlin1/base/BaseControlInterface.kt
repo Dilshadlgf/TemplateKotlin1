@@ -9,7 +9,7 @@ interface BaseControlInterface {
      * All initialization related work will be done in this method.
      * i.e. Handling lifecycle methods.
      */
-    open fun onInitialized() {}
+    abstract fun onInitialized()
 
     /**
      * All observer listener code will be handled in this method inside controllers.
