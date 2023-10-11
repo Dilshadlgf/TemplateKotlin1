@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- House UID -->
+    <TextView
+        android:id="@+id/textViewHouseUID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="House UID"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"/>
+
+    <EditText
+        android:id="@+id/editTextHouseUID"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/textViewHouseUID"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:hint="Enter House UID"/>
+
+    <!-- House No -->
+    <TextView
+        android:id="@+id/textViewHouseNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="House No"
+        android:layout_below="@+id/editTextHouseUID"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"/>
+
+    <EditText
+        android:id="@+id/editTextHouseNo"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/textViewHouseNo"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:hint="Enter House No"/>
+
+    <!-- Property Type -->
+    <TextView
+        android:id="@+id/textViewPropertyType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Property Type"
+        android:layout_below="@+id/editTextHouseNo"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerPropertyType"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/textViewPropertyType"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"/>
+
+    <!-- Ward -->
+    <TextView
+        android:id="@+id/textViewWard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ward"
+        android:layout_below="@+id/spinnerPropertyType"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerWard"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/textViewWard"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"/>
+
+    <!-- Sector -->
+    <TextView
+        android:id="@+id/textViewSector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sector"
+        android:layout_below="@+id/spinnerWard"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerSector"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/textViewSector"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"/>
+
+
+    </RelativeLayout>

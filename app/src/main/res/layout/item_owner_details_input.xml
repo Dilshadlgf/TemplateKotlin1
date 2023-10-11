@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <!-- Owner Name -->
+    <TextView
+        android:id="@+id/textViewOwnerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Owner Name"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"/>
+
+    <EditText
+        android:id="@+id/editTextOwnerName"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/textViewOwnerName"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:hint="Enter Owner Name"/>
+
+    <!-- Contact No -->
+    <TextView
+        android:id="@+id/textViewContactNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Contact No"
+        android:layout_below="@+id/editTextOwnerName"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"/>
+
+    <EditText
+        android:id="@+id/editTextContactNo"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/textViewContactNo"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:hint="Enter Contact No"/>
+
+    <!-- Owner Type -->
+    <TextView
+        android:id="@+id/textViewOwnerType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Owner Type"
+        android:layout_below="@+id/editTextContactNo"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerOwnerType"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/textViewOwnerType"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"/>
+
+    <!-- ID Type -->
+    <TextView
+        android:id="@+id/textViewIDType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID Type"
+        android:layout_below="@+id/spinnerOwnerType"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"/>
+
+    <Spinner
+        android:id="@+id/spinnerIDType"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/textViewIDType"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"/>
+
+    <!-- ID No -->
+    <TextView
+        android:id="@+id/textViewIDNo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ID No"
+        android:layout_below="@+id/spinnerIDType"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"/>
+
+    <EditText
+        android:id="@+id/editTextIDNo"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_below="@+id/textViewIDNo"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:hint="Enter ID No"/>
+
+    <ImageView
+        android:id="@+id/iv_preview"
+        android:layout_width="@dimen/_50sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:layout_below="@+id/editTextIDNo"
+        android:src="@drawable/ic_menu_camera"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/_10sdp"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_take_pic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Take Picture"
+        android:textColor="@color/white"
+        android:layout_below="@+id/iv_preview"
+        android:layout_centerHorizontal="true"
+        android:backgroundTint="@color/darksalmon"
+        />
+
+</RelativeLayout>

@@ -86,7 +86,8 @@ dependencies {
     implementation 'com.guolindev.permissionx:permissionx:1.6.4'
 
     //image picker
-    implementation 'com.github.dhaval2404:imagepicker:2.1'
+//    implementation 'com.github.dhaval2404:imagepicker:2.1'
+    implementation 'com.github.esafirm:android-image-picker:3.1.0'
 
     //image load
     implementation 'com.github.bumptech.glide:glide:4.15.0'
@@ -97,4 +98,7 @@ dependencies {
 
     //Custom dialog
     implementation 'com.github.f0ris.sweetalert:library:1.5.6'
+
+    //stepview
+    implementation 'com.github.shuhart:stepview:1.5.1'
 }
