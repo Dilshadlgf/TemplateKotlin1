@@ -9,14 +9,13 @@ import retrofit2.http.*
 
 interface RetrofitService {
 
-    @POST("dashboard/filter/funded")
-    fun getDashboardFund(@Body request: JsonObject) : Call<RootResponse>
+    @POST("user/auth/otplogin/generateotp")
+    suspend fun login(@Body request: JsonObject) : Response<RootResponse>
 
-    @POST("dashboard/filter/project")
-    fun getDashboardProject(@Body request: JsonObject) : Call<RootResponse>
+    @POST("user/auth/otplogin/validateotp")
+    suspend fun otpValidation(@Body request: JsonObject) : Response<RootResponse>
 
-    @POST("project/filter")
-    fun getCurrentProject(@Body request: JsonObject) : Call<RootResponse>
+
 
 
     @POST("{path1}/filter?pageno=no")

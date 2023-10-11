@@ -2,9 +2,11 @@ package com.example.templatekotlin1.base
 
 import android.Manifest
 import android.content.Context
+import android.content.DialogInterface
 import android.content.IntentSender.SendIntentException
 import android.os.Bundle
 import android.util.AttributeSet
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Toast
@@ -15,13 +17,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.viewbinding.ViewBinding
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.templatekotlin1.common.LoadingDialog
+import com.google.android.material.snackbar.Snackbar
 import com.permissionx.guolindev.PermissionX
 import dagger.hilt.android.AndroidEntryPoint
 
 
 
-abstract class BaseActivity<T : ViewBinding>(@LayoutRes val layoutId: Int)  :
+abstract class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutId: Int)  :
     AppCompatActivity(), BaseControlInterface {
 
     /**
@@ -34,30 +38,25 @@ abstract class BaseActivity<T : ViewBinding>(@LayoutRes val layoutId: Int)  :
 //    private lateinit var mFusedLocationClient:FusedLocationProviderClient
     private lateinit var  loadingDialog: AlertDialog
 
-    abstract fun getViewBinding(): T?
-
     override fun onCreate(savedInstanceState: Bundle?) {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         this.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        if(getViewBinding()==null) {
+        super.onCreate(savedInstanceState)
             binding = DataBindingUtil.setContentView(this@BaseActivity, layoutId) as T
-            setContentView((binding as ViewBinding).root)
-        }else{
-            binding=getViewBinding()!!
-            setContentView((binding as ViewBinding).root)
-        }
+            setContentView((binding as ViewDataBinding).root)
 
 //        binding.lifecycleOwner = this
 
         loadingDialog= LoadingDialog.initLoadingDialog(this)
 //        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-        super.onCreate(savedInstanceState)
+
+        onInitialized()
         addObservers()
         setUpClicks()
-        onInitialized()
+
         checkPermission()
 
     }
@@ -96,6 +95,45 @@ abstract class BaseActivity<T : ViewBinding>(@LayoutRes val layoutId: Int)  :
     override fun onDestroy() {
         super.onDestroy()
 
+    }
+
+    fun showWarningDialog(msg: String,id:Int,showCancelBtn:Boolean,onDialogInterface: DialogInterface.OnClickListener?){
+        customDialog(SweetAlertDialog.WARNING_TYPE,"Warning",msg,id,showCancelBtn,onDialogInterface)
+    }
+    fun showSuccessDialog(msg: String,id:Int,showCancelBtn:Boolean,onDialogInterface: DialogInterface.OnClickListener){
+        customDialog(SweetAlertDialog.SUCCESS_TYPE,"Success",msg,id,showCancelBtn,onDialogInterface)
+    }
+    fun showErrorDialog(msg: String,id:Int,showCancelBtn:Boolean,onDialogInterface: DialogInterface.OnClickListener?){
+        customDialog(SweetAlertDialog.ERROR_TYPE,"Error",msg,id,showCancelBtn,onDialogInterface)
+    }
+
+    fun showDialog( msg: String,id:Int,showCancelBtn:Boolean,onDialogInterface: DialogInterface.OnClickListener?){
+        customDialog(SweetAlertDialog.NORMAL_TYPE,"Alert",msg,id,showCancelBtn,onDialogInterface)
+    }
+    fun showSimpleDialog( msg: String){
+        customDialog(SweetAlertDialog.NORMAL_TYPE,"Alert",msg,-1,false,null)
+    }
+    private fun customDialog(alertType:Int,title:String, msg: String,id:Int,showCancelBtn:Boolean,onDialogInterface: DialogInterface.OnClickListener?){
+        val dialog= SweetAlertDialog(this, alertType)
+            .setTitleText(title)
+            .setContentText(msg)
+            .setConfirmText("OK")
+            .setConfirmClickListener {
+                    sDialog -> sDialog.dismissWithAnimation()
+                if(onDialogInterface!=null)
+                    onDialogInterface.onClick(sDialog,id)
+            }
+        if(showCancelBtn){
+            dialog.setCancelButton(
+                "Cancel"
+            ) { sDialog -> sDialog.dismissWithAnimation() }
+        }
+        dialog.show()
+    }
+    fun showSnackbar(view: View, message: String) : Snackbar {
+        val snackbar= Snackbar.make(view, message, Snackbar.LENGTH_SHORT)
+        snackbar.show()
+        return snackbar
     }
 
 }

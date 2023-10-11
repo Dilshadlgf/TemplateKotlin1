@@ -5,11 +5,9 @@ import okhttp3.MultipartBody
 
 class MainRepository constructor(private val retrofitService: RetrofitService) {
 
-    fun getDashboardFund(jsonObject: JsonObject) = retrofitService.getDashboardFund(jsonObject)
+    suspend fun login(loginRequest: JsonObject) = retrofitService.login(loginRequest)
 
-    fun getDashboardProject(jsonObject: JsonObject) = retrofitService.getDashboardProject(jsonObject)
-
-    fun getCurrentProject(jsonObject: JsonObject) = retrofitService.getCurrentProject(jsonObject)
+    suspend fun otpValidation(loginRequest: JsonObject) = retrofitService.otpValidation(loginRequest)
 
     suspend fun singleFileUpload(files: List<MultipartBody.Part>,path: String) = retrofitService.singleFileUpload(files,path)
 

@@ -3,6 +3,7 @@ package com.example.templatekotlin1.base
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.DialogInterface
 import android.location.Location
 import android.location.LocationManager
 import android.os.Bundle
@@ -16,9 +17,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import cn.pedant.SweetAlert.SweetAlertDialog
 import com.example.templatekotlin1.common.LoadingDialog
 import com.google.android.gms.location.*
 import com.google.android.gms.tasks.Task
+import com.google.android.material.snackbar.Snackbar
 import com.permissionx.guolindev.PermissionX
 
 /**
@@ -174,6 +177,45 @@ abstract class BaseFragment<T : ViewDataBinding>(@LayoutRes val layoutId: Int) :
 
         }
 
+    }
+
+    fun showWarningDialog(msg: String,id:Int,showCancelBtn:Boolean,onDialogInterface: DialogInterface.OnClickListener?){
+        customDialog(SweetAlertDialog.WARNING_TYPE,"Warning",msg,id,showCancelBtn,onDialogInterface)
+    }
+    fun showSuccessDialog(msg: String,id:Int,showCancelBtn:Boolean,onDialogInterface: DialogInterface.OnClickListener){
+        customDialog(SweetAlertDialog.SUCCESS_TYPE,"Success",msg,id,showCancelBtn,onDialogInterface)
+    }
+    fun showErrorDialog(msg: String,id:Int,showCancelBtn:Boolean,onDialogInterface: DialogInterface.OnClickListener?){
+        customDialog(SweetAlertDialog.ERROR_TYPE,"Error",msg,id,showCancelBtn,onDialogInterface)
+    }
+
+    fun showDialog( msg: String,id:Int,showCancelBtn:Boolean,onDialogInterface: DialogInterface.OnClickListener?){
+        customDialog(SweetAlertDialog.NORMAL_TYPE,"Alert",msg,id,showCancelBtn,onDialogInterface)
+    }
+    fun showSimpleDialog( msg: String){
+        customDialog(SweetAlertDialog.NORMAL_TYPE,"Alert",msg,-1,false,null)
+    }
+    private fun customDialog(alertType:Int,title:String, msg: String,id:Int,showCancelBtn:Boolean,onDialogInterface: DialogInterface.OnClickListener?){
+        val dialog=SweetAlertDialog(requireContext(), alertType)
+            .setTitleText(title)
+            .setContentText(msg)
+            .setConfirmText("OK")
+            .setConfirmClickListener {
+                    sDialog -> sDialog.dismissWithAnimation()
+                if(onDialogInterface!=null)
+                    onDialogInterface.onClick(sDialog,id)
+            }
+        if(showCancelBtn){
+            dialog.setCancelButton(
+                "Cancel"
+            ) { sDialog -> sDialog.dismissWithAnimation() }
+        }
+        dialog.show()
+    }
+    fun showSnackbar(view: View,message: String) : Snackbar {
+        val snackbar= Snackbar.make(view, message, Snackbar.LENGTH_SHORT)
+        snackbar.show()
+        return snackbar
     }
 
 

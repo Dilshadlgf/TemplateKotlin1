@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.templatekotlin1.common.MyJsonUtil
 import com.example.templatekotlin1.common.baseModel.RootResponse
+import com.example.templatekotlin1.common.baseModel.User
 import com.example.templatekotlin1.common.network.BaseResponse
 import com.example.templatekotlin1.common.network.MainRepository
 import com.google.gson.JsonObject
@@ -40,8 +41,8 @@ class SurveyViewModel @Inject constructor(private val repository: MainRepository
         }
     }
 
-    fun parseData(rootResponse: RootResponse):MutableList<JsonObject>{
-        val mlist= MyJsonUtil.getDataPojoFromDataJson(rootResponse.response.data.user, JsonObject::class.java)
-        return mlist as MutableList<JsonObject>
+    fun parseData(rootResponse: RootResponse): User {
+        val mlist= MyJsonUtil.getDataPojoFromDataJson(rootResponse.response.data.user, User::class.java)
+        return mlist as User
     }
 }
